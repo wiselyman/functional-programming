@@ -2,29 +2,15 @@ package top.wisely.functionalprogramming;
 
 
 
-import lombok.Setter;
+import lombok.Data;
 
-import java.util.Optional;
-
-@Setter
+@Data
 public class Person {
 
-    private String firstName = "Will";
+    private String firstName;
 
-    private String middleName ;
+    private String middleName;
 
-    private String lastName = "Smith";
+    private String lastName;
 
-    public Optional<String> getFirstName() {
-        return Optional.of(this.firstName);
-    }
-
-
-    public  Optional<String> getMiddleName() {
-        return Optional.ofNullable(this.middleName);
-    }
-
-    public Optional<String> getLastName() {
-        return Optional.ofNullable(this.lastName);
-    }
 }

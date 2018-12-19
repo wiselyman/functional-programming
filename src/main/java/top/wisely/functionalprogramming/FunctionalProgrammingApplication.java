@@ -32,25 +32,29 @@ public class FunctionalProgrammingApplication {
 		return p -> {
 			Person person = new Person();
 
-			Optional<String> firstName = person.getFirstName();
-			firstName.ifPresent(name -> {
-											String firstNameGreetings = firstName.get().toUpperCase();
+			person.setFirstName("Will");
+			Optional<String> firstNameOptional = Optional.of(person.getFirstName());
+			firstNameOptional.ifPresent(name -> {
+											String firstNameGreetings = firstNameOptional.get().toUpperCase();
 											log.info("hello " + firstNameGreetings);
 			   						      });
 
 
-			Optional<String> middleName = person.getMiddleName();
-			String middleNameGreetings = middleName
+
+			Optional<String> middleNameOptional = Optional.ofNullable(person.getMiddleName());
+			String middleNameGreetings = middleNameOptional
 					.map(name ->  name.toUpperCase())
 					.orElse("no middle name");
 			log.info("hello " + middleNameGreetings);
 
+			log.info(new Boolean(middleNameOptional.isPresent()).toString());
 
-			Optional<String> lastName = person.getLastName();
-			String lastNameGreetings = lastName
-											.map(name ->  name.toUpperCase())
-											.orElse("no last name");
-			log.info("hello " + lastNameGreetings);
+
+			person.setLastName("Smith");
+			Optional<String> lastNameOptional = Optional.ofNullable(person.getLastName());
+			Optional<String> lastNameOptionalNew = lastNameOptional
+											.map(name ->  name.toUpperCase());
+			log.info("hello " + lastNameOptionalNew.get());
 
 
 
